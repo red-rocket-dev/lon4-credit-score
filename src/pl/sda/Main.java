@@ -74,8 +74,12 @@ public class Main {
         String durationInMonthsString = scanner.nextLine();
         int durationInMonths = Integer.parseInt(durationInMonthsString);
 
-        Debtor debtor = new Debtor(age, amountOfCredit, installments, income, durationInMonths);
+        Debtor debtor = new Debtor(age, amountOfCredit, installments, income, durationInMonths, installmentDelayed);
+
+        RulesEngine rulesEngine = new RulesEngine(BigDecimal.valueOf(0.06), BigDecimal.valueOf(3000));
 
         System.out.println(debtor);
+        System.out.println("Czy kredyt zaakceptowany?");
+        System.out.println(rulesEngine.isCreditApproved(debtor));
     }
 }

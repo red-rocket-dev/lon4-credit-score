@@ -9,13 +9,19 @@ public class Debtor {
     private BigDecimal[] installments;
     private BigDecimal income;
     private long durationInMonth;
+    private boolean repaymentDelayed;
 
-    public Debtor(int age, BigDecimal amountOfCredit, BigDecimal[] installments, BigDecimal income, long durationInMonth) {
+    public Debtor(int age, BigDecimal amountOfCredit, BigDecimal[] installments, BigDecimal income, long durationInMonth, boolean repaymentDelayed) {
         this.age = age;
         this.amountOfCredit = amountOfCredit;
         this.installments = installments;
         this.income = income;
         this.durationInMonth = durationInMonth;
+        this.repaymentDelayed = repaymentDelayed;
+    }
+
+    public boolean isRepaymentDelayed() {
+        return repaymentDelayed;
     }
 
     public int getAge() {
