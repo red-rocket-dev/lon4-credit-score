@@ -1,5 +1,8 @@
 package pl.sda;
 
+import java.math.BigDecimal;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -38,7 +41,41 @@ public class Main {
         // 3. W main utwórz zmienną zawierającą nowy obiekt typu RulesEngine podając w konstruktorze parametry (np. 0,06 i 3000), przetestuj czy rzeczywiscie podane reguły działają
         // 4. W argumencie wprowadź obiekt Debtor utworzony z wprowadzonych przez klienta danych
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj wiek");
+        String ageString = scanner.nextLine();
+        int age = Integer.parseInt(ageString);
+        System.out.println("Podaj dochod");
+        String incomeString = scanner.nextLine();
+        BigDecimal income = new BigDecimal(incomeString);
+        System.out.println("Podaj raty kredytow po przecinku");
+        String installmentsString = scanner.nextLine();
+        String[] installmentsArrayOfStrings = installmentsString.split(",");
+        BigDecimal[] installments = new BigDecimal[installmentsArrayOfStrings.length];
+        for (int i = 0; i < installmentsArrayOfStrings.length; i++) {
+            String installmentString = installmentsArrayOfStrings[i];
+            installments[i] = new BigDecimal(installmentString);
+        }
+        System.out.println("Czy spozniles sie z splata raty?(tak/nie)");
+        String installmentDelayedString = scanner.nextLine();
+        boolean installmentDelayed;
+        if (installmentDelayedString.equals("tak")) {
+            installmentDelayed = true;
+        } else if (installmentDelayedString.equals("nie")) {
+            installmentDelayed = false;
+        } else {
+            System.out.println("Zla wartosc");
+            return;
+        }
+        System.out.println("Ile pieniedzy chcesz pozyczyc?");
+        String amountOfCreditString = scanner.nextLine();
+        BigDecimal amountOfCredit = new BigDecimal(amountOfCreditString);
+        System.out.println("Na ile miesięcychcesz pozyczyc?");
+        String durationInMonthsString = scanner.nextLine();
+        int durationInMonths = Integer.parseInt(durationInMonthsString);
 
+        Debtor debtor = new Debtor(age, amountOfCredit, installments, income, durationInMonths);
 
+        System.out.println(debtor);
     }
 }
